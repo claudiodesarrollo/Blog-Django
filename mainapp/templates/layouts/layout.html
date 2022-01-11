@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {% block title%}
+        {% endblock %} | Quipildor C
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <header>
+        <div id="logotipo">
+          
+            <img src="{% static 'images/logo.png' %}"/>
+            <h1> Blog con Django</h1>
+        </div>
+
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href={% url 'index' %}>INICIO</a>
+            </li>
+            <li>
+                <a href={% url 'about' %}>ABOUT</a>
+            </li>
+            {% for page in pages %}
+            <li>
+                <a href={% url 'page' page.2 %}>{{page.1}}</a>
+            </li>
+            {% endfor %}
+      
+        </ul>
+
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    <hr />
+
+    <div id="content">
+        <div class="box">
+        <!--   <h2 class="title"> Titulo de Prueba</h2>
+            <strong> Contenido Original de template !!! </strong> --> 
+            {% block content%}
+
+            {% endblock%}
+        </div>
+    </div>
+    <hr />
+    <footer>
+        Django &copy; Quipildor Claudio - {% now "Y" %} 
+    </footer>
+</body>
+
+</html>
